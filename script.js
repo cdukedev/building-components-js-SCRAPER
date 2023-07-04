@@ -42,8 +42,9 @@ class MainContent {
   }
 
   generateCards() {
-    return this.data.map(item => {
-      return `
+    return this.data
+      .map((item) => {
+        return `
         <div class="card">
           <div class="card__content">
             ${item.content}
@@ -53,7 +54,8 @@ class MainContent {
           </h4>
         </div>
       `;
-    }).join('');
+      })
+      .join("");
   }
 
   render() {
@@ -94,45 +96,11 @@ class Footer {
   }
 }
 async function fetchData() {
-  const response = await fetch('data.json');
+  const response = await fetch("members.json");
   const data = await response.json();
   return data;
 }
 
-
-// CORS ERROR 
-// async function fetchPageContent(url) {
-//   const response = await fetch(url);
-//   const html = await response.text();
-//   return html;
-// }
-// // Extracting Data from Codenected
-// function extractData(html) {
-//   const parser = new DOMParser();
-//   const doc = parser.parseFromString(html, 'text/html');
-
-//   const containers = doc.querySelectorAll('.membertext_container');
-//   const dataArray = [];
-
-//   containers.forEach(container => {
-//     const title = container.querySelector('h4').textContent;
-//     const description = container.querySelector('span').textContent;
-
-//     dataArray.push({
-//       title: title,
-//       content: description,
-//     });
-//   });
-
-//   return dataArray;
-// }
-// Example data array
-// const data = [
-//   { title: 'Card 1', content: 'Content 1' },
-//   { title: 'Card 2', content: 'Content 2' },
-//   { title: 'Card 3', content: 'Content 3' },
-// ];
-// Main component
 class Main {
   constructor() {
     this.header = new Header();
@@ -148,7 +116,7 @@ class Main {
 
   render() {
     if (!this.mainContent) {
-      return '<div>Loading...</div>';
+      return "<div>Loading...</div>";
     }
 
     return `
@@ -162,7 +130,7 @@ class Main {
   }
 }
 
-let bootstrap = document.getElementById('main');
+let bootstrap = document.getElementById("main");
 let main = new Main();
 
 (async () => {
